@@ -4,7 +4,7 @@
 PortSystem              1.0
 
 name                    doxygen
-version                 1.8.7
+version                 1.8.8
 categories              textproc devel
 maintainers             css openmaintainer
 license                 GPL-2
@@ -35,8 +35,8 @@ master_sites            http://ftp.stack.nl/pub/users/dimitri/ \
 distfiles               ${distname}.src${extract.suffix}
 
 checksums               ${distname}.src${extract.suffix} \
-                        rmd160  bef0f6dcd4fac3e0bc6126cae23374e960ab9163 \
-                        sha256  c6eac6b6e82148ae15ec5aecee4631547359f284af1ce94474d046ebca6ee3d9
+                        rmd160  9f748f424c20259b5df98b05f8c2cf7bf8b85ed4 \
+                        sha256  d1f978350527a2338199c9abb78f76f10746520de5dc4ae4cdd27fc9df9b19b8
 
 depends_build-append    bin:perl:perl5 \
                         port:flex \
@@ -71,6 +71,9 @@ post-extract {
     delete ${worksrcpath}/src/ce_parse.h
     delete ${worksrcpath}/src/vhdlparser.cpp
     delete ${worksrcpath}/src/vhdlparser.h
+    
+    # This file should be regenerated, this is a dist packaging bug
+    delete ${worksrcpath}/src/Makefile.libdoxycfg
 }
 
 set cxx_stdlibflags {}
@@ -100,6 +103,23 @@ post-patch {
     # remove flag that is not defined for gcc and only suppresses some warnings for clang
     if {[string match *gcc* ${configure.compiler}]} {
         reinplace "s|-Wno-invalid-source-encoding||g" ${tmake_conf}
+    }
+
+    # we're using macports libiconv
+    reinplace "s|^#define LIBICONV_PLUG||" ${worksrcpath}/src/portable_c.c
+
+    # get rid of the deployment target selection, it breaks the Mavericks build
+    if { ${os.major}>=13 } {
+        reinplace "s|-mmacosx-version-min=10\\.5||" \
+            ${worksrcpath}/addon/doxmlparser/examples/metrics/Makefile.metrics \
+            ${worksrcpath}/addon/doxmlparser/src/Makefile.doxmlparser \
+            ${worksrcpath}/addon/doxmlparser/test/Makefile.xmlparse \
+            ${worksrcpath}/addon/doxywizard/Makefile.doxywizard \
+            ${worksrcpath}/libmd5/Makefile.libmd5 \
+            ${worksrcpath}/tmake/lib/macosx-c++/tmake.conf \
+            ${worksrcpath}/tmake/lib/macosx-intel-c++/tmake.conf \
+            ${worksrcpath}/tmake/lib/macosx-uni-c++/tmake.conf \
+            ${worksrcpath}/vhdlparser/Makefile.vhdlparser
     }
 }
 
