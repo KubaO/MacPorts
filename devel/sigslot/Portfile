@@ -6,15 +6,15 @@ PortSystem      1.0
 name            sigslot
 version         1.0.0
 categories      devel
+maintainers     mareimbrium.org:kuba
+license         public-domain
 
 description     A signal-slot mechanism in C++.
 long_description \
     Implements a type-safe, thread-safe signal/slot mechanism in C++.
-homepage        http://sigslot.sourceforge.net
 
+homepage        http://sigslot.sourceforge.net
 platforms       darwin
-license         public_domain
-maintainers     mareimbrium.org:kuba
 
 master_sites    sourceforge
 
