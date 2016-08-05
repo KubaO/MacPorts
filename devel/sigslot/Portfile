@@ -16,17 +16,34 @@ long_description \
 homepage        http://sigslot.sourceforge.net
 platforms       darwin
 
-master_sites    sourceforge
+master_sites    sourceforge:source \
+                http://sigslot.sourceforge.net:doc
 
 distname        ${name}-1-0-0
 
-checksums       rmd160  181dae68a7212534d658e5c3d90260745b6f3848 \
-                sha256  0b17447e3f19189ddd71f4a9293359aa7d7c2486b4fa3ddc6411b1a5d3d9cb40
+distfiles       ${distname}${extract.suffix}:source \
+                sigslot.pdf:doc
+
+checksums       ${distname}${extract.suffix} \
+                    rmd160  181dae68a7212534d658e5c3d90260745b6f3848 \
+                    sha256  0b17447e3f19189ddd71f4a9293359aa7d7c2486b4fa3ddc6411b1a5d3d9cb40 \
+                sigslot.pdf \
+                    rmd160  b0d3e8fa88f2ab6f3fff8dd2e9f1055621b641bf \
+                    sha256  a3ed73f9be471a047f250223ada74cf6c38fbd220c5259f89f39cf82269d5275 
 
 extract.mkdir   yes
+extract.only-delete sigslot.pdf
+post-extract {
+    file copy ${distpath}/sigslot.pdf ${workpath}
+}
+
 configure {}
 build {}
 destroot {
     file mkdir ${destroot}${prefix}/include/${name}
-    file copy ${worksrcpath}/sigslot/sigslot.h ${destroot}${prefix}/include/${name}
+    file copy ${worksrcpath}/sigslot/sigslot.h \
+        ${destroot}${prefix}/include/${name}
+    file mkdir ${destroot}${prefix}/share/doc/${name}
+    file copy ${workpath}/sigslot.pdf \
+        ${destroot}${prefix}/share/doc/${name}
 }
