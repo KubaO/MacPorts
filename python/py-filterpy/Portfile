@@ -28,6 +28,9 @@ worksrcdir          filterpy-${version}
 checksums           rmd160  cc915811c4f6704fe1ae4537b5e93b3a0bad4b76 \
                     sha256  8f623d2938476934141dca3f2912395586c886c520960579a5563bfc8955639a 
 
+depends_lib-append  port:py${python.version}-numpy \
+                    port:py${python.version}-scipy
+
 python.versions     27 33 34 35
 
 livecheck.type      regex
