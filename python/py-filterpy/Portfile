@@ -3,9 +3,10 @@
 
 PortSystem          1.0
 PortGroup           python 1.0
+PortGroup           github 1.0
 
+github.setup        rlabbe filterpy 0.1.3
 name                py-filterpy
-version             0.1.3
 categories-append   science
 maintainers         mareimbrium.org:kuba
 license             MIT
@@ -21,15 +22,18 @@ long_description    This library provides Kalman filtering and \
                     discrete Bayes, and more.
 
 homepage            https://github.com/rlabbe/filterpy
-master_sites        https://github.com/rlabbe/filterpy/archive/
 
+github.tarball_from releases
 distname            ${version}
 worksrcdir          filterpy-${version}
 checksums           rmd160  cc915811c4f6704fe1ae4537b5e93b3a0bad4b76 \
-                    sha256  8f623d2938476934141dca3f2912395586c886c520960579a5563bfc8955639a 
+                    sha256  8f623d2938476934141dca3f2912395586c886c520960579a5563bfc8955639a
 
 depends_lib-append  port:py${python.version}-numpy \
                     port:py${python.version}-scipy
+
+# Alternatively, we could do a git checkout
+fetch.type          git
 
 python.versions     27 33 34 35
 
