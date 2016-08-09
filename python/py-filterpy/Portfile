@@ -30,3 +30,6 @@ checksums           rmd160  cc915811c4f6704fe1ae4537b5e93b3a0bad4b76 \
 
 python.versions     27 33 34 35
 
+livecheck.type      regex
+livecheck.url       https://github.com/rlabbe/filterpy/tags
+livecheck.regex     (\[0-9.\]+).tar.gz
