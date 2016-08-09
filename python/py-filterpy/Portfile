@@ -32,9 +32,6 @@ checksums           rmd160  cc915811c4f6704fe1ae4537b5e93b3a0bad4b76 \
 depends_lib-append  port:py${python.version}-numpy \
                     port:py${python.version}-scipy
 
-# Alternatively, we could do a git checkout
-fetch.type          git
-
 python.versions     27 33 34 35
 
 livecheck.type      regex
