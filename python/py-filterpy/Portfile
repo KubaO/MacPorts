@@ -8,7 +8,7 @@ PortGroup           github 1.0
 github.setup        rlabbe filterpy 0.1.3
 name                py-filterpy
 categories-append   science
-maintainers         mareimbrium.org:kuba
+maintainers         mareimbrium.org:kuba openmaintainer
 license             MIT
 platforms           darwin
 description         Kalman filters and other optimal and non-optimal \
@@ -25,14 +25,16 @@ homepage            https://github.com/rlabbe/filterpy
 
 github.tarball_from releases
 distname            ${version}
-worksrcdir          filterpy-${version}
 checksums           rmd160  cc915811c4f6704fe1ae4537b5e93b3a0bad4b76 \
                     sha256  8f623d2938476934141dca3f2912395586c886c520960579a5563bfc8955639a
 
-depends_lib-append  port:py${python.version}-numpy \
-                    port:py${python.version}-scipy
+python.versions     27 34 35
 
-python.versions     27 33 34 35
+if {${name} ne ${subport}} {
+    depends_lib-append  port:py${python.version}-numpy \
+                        port:py${python.version}-scipy
+    worksrcdir          filterpy-${version}
+}
 
 livecheck.type      regex
 livecheck.url       https://github.com/rlabbe/filterpy/tags
