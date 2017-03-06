@@ -1,0 +1,18 @@
+--- src/main.cpp.orig	2017-01-25 12:22:02.000000000 -0500
++++ src/main.cpp	2017-03-06 16:07:19.000000000 -0500
+@@ -129,6 +129,15 @@
+ 
+ bool MyApp::OnInit()
+ {
++  {
++    wxString oldpath;
++    wxGetEnv(wxT("PATH"), &oldpath);
++    if (oldpath.Find(wxT("@@PREFIX@@/bin")) == -1)
++    {
++      wxString newpath = oldpath.Prepend(wxT("@@PREFIX@@/bin:"));
++      wxSetEnv(wxT("PATH"), newpath);
++    }
++  }
+   m_frame = NULL;
+ //  atexit(Cleanup_Static);
+   int lang = wxLANGUAGE_UNKNOWN;

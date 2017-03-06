@@ -1,0 +1,11 @@
+--- src/Dirstructure.cpp.orig	2017-03-06 16:11:54.000000000 -0500
++++ src/Dirstructure.cpp	2017-03-06 16:12:16.000000000 -0500
+@@ -78,7 +78,7 @@
+   maxima.MakeAbsolute();
+   return maxima.GetFullPath();
+ #elif defined __WXMAC__
+-  return wxT("/Applications/Maxima.app");
++  return wxT("maxima");
+ #else
+   return wxT("maxima");
+ #endif
