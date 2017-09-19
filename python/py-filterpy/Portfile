@@ -5,7 +5,7 @@ PortSystem          1.0
 PortGroup           python 1.0
 PortGroup           github 1.0
 
-github.setup        rlabbe filterpy 0.1.3
+github.setup        rlabbe filterpy 1.0.0
 name                py-filterpy
 categories-append   science
 maintainers         mareimbrium.org:kuba openmaintainer
@@ -23,12 +23,14 @@ long_description    This library provides Kalman filtering and \
 
 homepage            https://github.com/rlabbe/filterpy
 
-github.tarball_from releases
+#github.tarball_from archive
+github.master_sites ${github.homepage}/archive/${git.branch}
 distname            ${version}
-checksums           rmd160  cc915811c4f6704fe1ae4537b5e93b3a0bad4b76 \
-                    sha256  8f623d2938476934141dca3f2912395586c886c520960579a5563bfc8955639a
+checksums       md5     790adeab94559bbcb4bb60711879d295 \
+                sha256  82d080d76e98d2fa499ee63809295d53cff99520d95ca4f176ba67a1980fa540 \
+                rmd160  1da51c21e03079701e1cedefbdf24c656fe3cf5f
 
-python.versions     27 34 35
+python.versions     27 34 35 36
 
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-numpy \
