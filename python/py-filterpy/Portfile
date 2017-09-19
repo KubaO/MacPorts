@@ -25,9 +25,9 @@ homepage            https://github.com/rlabbe/filterpy
 #github.tarball_from archive
 github.master_sites ${github.homepage}/archive/${git.branch}
 distname            ${version}
-checksums       md5     790adeab94559bbcb4bb60711879d295 \
-                sha256  82d080d76e98d2fa499ee63809295d53cff99520d95ca4f176ba67a1980fa540 \
-                rmd160  1da51c21e03079701e1cedefbdf24c656fe3cf5f
+checksums           md5     790adeab94559bbcb4bb60711879d295 \
+                    sha256  82d080d76e98d2fa499ee63809295d53cff99520d95ca4f176ba67a1980fa540 \
+                    rmd160  1da51c21e03079701e1cedefbdf24c656fe3cf5f
 
 python.versions     27 34 35 36
 
