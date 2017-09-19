@@ -31,12 +31,13 @@ checksums           md5     790adeab94559bbcb4bb60711879d295 \
 
 python.versions     27 34 35 36
 
+livecheck.type      regex
+livecheck.url       https://github.com/rlabbe/filterpy/tags
+livecheck.regex     (\[0-9.\]+).tar.gz
+
 if {${name} ne ${subport}} {
     depends_lib-append  port:py${python.version}-numpy \
                         port:py${python.version}-scipy
     worksrcdir          filterpy-${version}
+    livecheck.type      none
 }
-
-livecheck.type      regex
-livecheck.url       https://github.com/rlabbe/filterpy/tags
-livecheck.regex     (\[0-9.\]+).tar.gz
