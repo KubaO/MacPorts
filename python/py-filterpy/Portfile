@@ -7,7 +7,7 @@ PortGroup           github 1.0
 github.setup        rlabbe filterpy 1.0.0
 name                py-filterpy
 categories-append   science
-maintainers         mareimbrium.org:kuba openmaintainer
+maintainers         @KubaO openmaintainer
 license             MIT
 platforms           darwin
 description         Kalman filters and other optimal and non-optimal \
@@ -29,7 +29,7 @@ checksums           md5     790adeab94559bbcb4bb60711879d295 \
                     sha256  82d080d76e98d2fa499ee63809295d53cff99520d95ca4f176ba67a1980fa540 \
                     rmd160  1da51c21e03079701e1cedefbdf24c656fe3cf5f
 
-python.versions     27 34 35 36
+python.versions     27 36
 
 livecheck.type      regex
 livecheck.url       https://github.com/rlabbe/filterpy/tags
